@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="Level_Phase_Resource" load_steps=5 format=3 uid="uid://dwjri8tpxrnh7"]
+
+[ext_resource type="Resource" uid="uid://0ojr52ewmeaa" path="res://Resources/enemy_01.tres" id="1_o8vmh"]
+[ext_resource type="Resource" uid="uid://b8iy5wy2kmdww" path="res://Resources/enemy_02.tres" id="2_ppay4"]
+[ext_resource type="Resource" uid="uid://dtswucga1gf51" path="res://Resources/enemy_03.tres" id="3_vdni4"]
+[ext_resource type="Script" path="res://Scripts/level_phase_resource.gd" id="4_lss3v"]
+
+[resource]
+script = ExtResource("4_lss3v")
+enemy01_count = 1
+enemy02_count = 0
+enemy03_count = 0
+enemy01_res = ExtResource("1_o8vmh")
+enemy02_res = ExtResource("2_ppay4")
+enemy03_res = ExtResource("3_vdni4")
+timeBetweenSpawns = 1.0
+phaseCooldown = 3.0

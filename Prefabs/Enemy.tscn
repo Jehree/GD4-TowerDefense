@@ -1,0 +1,37 @@
+[gd_scene load_steps=4 format=3 uid="uid://cpo4bka3uu6eh"]
+
+[ext_resource type="Script" path="res://Scripts/enemy.gd" id="1_n24rm"]
+[ext_resource type="Texture2D" uid="uid://conxl4tvl53xu" path="res://Sprites/icon.svg" id="2_ui2yd"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_gamku"]
+radius = 42.19
+
+[node name="Enemy_Path_Follower" type="PathFollow2D"]
+position = Vector2(42, 617)
+rotation = -1.12475
+rotates = false
+loop = false
+script = ExtResource("1_n24rm")
+
+[node name="Enemy" type="Sprite2D" parent="."]
+rotation = 1.12399
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_ui2yd")
+
+[node name="Health_Amount" type="Label" parent="."]
+unique_name_in_owner = true
+offset_left = 45.5364
+offset_top = 30.3222
+offset_right = 115.536
+offset_bottom = 56.3222
+rotation = 1.12518
+scale = Vector2(1.89394, 1.89394)
+text = "Health: 0"
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_gamku")
+debug_color = Color(0, 0.6, 0.701961, 0.419608)
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
