@@ -1,6 +1,6 @@
 extends Node
 
-enum EnemyType {
+enum EnemyName {
 	ENEMY01,
 	ENEMY02,
 	ENEMY03
@@ -9,4 +9,10 @@ enum EnemyType {
 enum DataType{
 	COUNT,
 	RESOURCE
+}
+
+enum EnemyType {
+	BASIC,
+	FAST,
+	TANK
 }

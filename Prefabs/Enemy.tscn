@@ -1,12 +1,13 @@
 [gd_scene load_steps=4 format=3 uid="uid://cpo4bka3uu6eh"]
 
 [ext_resource type="Script" path="res://Scripts/enemy.gd" id="1_n24rm"]
-[ext_resource type="Texture2D" uid="uid://conxl4tvl53xu" path="res://Sprites/icon.svg" id="2_ui2yd"]
+[ext_resource type="Texture2D" uid="uid://eufwu1xsqs3g" path="res://Sprites/enemy.png" id="2_o12cd"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_gamku"]
-radius = 42.19
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_yox7m"]
+radius = 13.9979
+height = 48.0276
 
-[node name="Enemy_Path_Follower" type="PathFollow2D"]
+[node name="Enemy_Path_Follower" type="PathFollow2D" groups=["Enemy"]]
 position = Vector2(42, 617)
 rotation = -1.12475
 rotates = false
@@ -14,9 +15,11 @@ loop = false
 script = ExtResource("1_n24rm")
 
 [node name="Enemy" type="Sprite2D" parent="."]
+texture_filter = 1
+texture_repeat = 1
 rotation = 1.12399
-scale = Vector2(0.5, 0.5)
-texture = ExtResource("2_ui2yd")
+scale = Vector2(3, 3)
+texture = ExtResource("2_o12cd")
 
 [node name="Health_Amount" type="Label" parent="."]
 unique_name_in_owner = true
@@ -31,7 +34,9 @@ text = "Health: 0"
 [node name="Area2D" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-shape = SubResource("CircleShape2D_gamku")
+position = Vector2(-13.9638, 5.56891)
+rotation = -0.44648
+shape = SubResource("CapsuleShape2D_yox7m")
 debug_color = Color(0, 0.6, 0.701961, 0.419608)
 
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]

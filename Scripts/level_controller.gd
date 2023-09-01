@@ -39,9 +39,13 @@ func BuildEnemySpawnOrder() -> Array[Enemy_Resource]:
 		var thisEnemyCount = thisEnemyElement[ENM.DataType.COUNT]
 		var thisEnemyResource = thisEnemyElement[ENM.DataType.RESOURCE]
 		
-		for i in thisEnemyCount:
-			enemyResourcesOrder.append(thisEnemyResource)
-			
+		if thisEnemyResource != null:
+			for i in thisEnemyCount:
+				enemyResourcesOrder.append(thisEnemyResource)
+		
+		if thisEnemyResource == null and thisEnemyCount != 0:
+			print("Check for null enemy resource file on level controller!")
+		
 	return enemyResourcesOrder
 
 

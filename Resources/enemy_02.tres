@@ -4,6 +4,8 @@
 
 [resource]
 script = ExtResource("1_r482j")
+enemyType = 2
 enemyDamage = 5
-moveSpeed = 150
+moveSpeed = 80
 maxHealth = 5
+scoreValue = 3

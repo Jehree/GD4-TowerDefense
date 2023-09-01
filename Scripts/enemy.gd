@@ -1,10 +1,11 @@
 extends PathFollow2D
 
-@export var moveSpeed := 100.0
-@export var maxHealth := 5
+var moveSpeed := 100.0
+var maxHealth := 5
 var currentHealth: int
-@export var enemyDamage := 2
-@export var scoreValue := 2
+var enemyDamage := 2
+var scoreValue := 2
+var enemyType
 
 signal ENEMY_DEATH(scoreValue: int)
 

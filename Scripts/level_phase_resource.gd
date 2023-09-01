@@ -18,15 +18,15 @@ class_name Level_Phase_Resource
 
 func GetPhaseDictionary() -> Dictionary:
 	return {
-			ENM.EnemyType.ENEMY01: {
+			ENM.EnemyName.ENEMY01: {
 				ENM.DataType.COUNT: enemy01_count,
 				ENM.DataType.RESOURCE: enemy01_res
 			},
-			ENM.EnemyType.ENEMY02: {
+			ENM.EnemyName.ENEMY02: {
 				ENM.DataType.COUNT: enemy02_count,
 				ENM.DataType.RESOURCE: enemy02_res
 			},
-			ENM.EnemyType.ENEMY03: {
+			ENM.EnemyName.ENEMY03: {
 				ENM.DataType.COUNT: enemy03_count,
 				ENM.DataType.RESOURCE: enemy03_res
 			}

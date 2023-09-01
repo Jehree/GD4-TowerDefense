@@ -39,9 +39,11 @@ func _on_spawn_cooldown_timeout() -> void:
 
 func InstantiateEnemy(enemyResource:Enemy_Resource):
 	var instance = enemyToInstantiate.instantiate()
+	instance.enemyType = enemyResource.enemyType
 	instance.enemyDamage = enemyResource.enemyDamage
 	instance.moveSpeed = enemyResource.moveSpeed
 	instance.maxHealth = enemyResource.maxHealth
+	instance.scoreValue = enemyResource.scoreValue
 	%Enemy_Path.add_child(instance)
 
 

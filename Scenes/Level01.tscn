@@ -1,15 +1,17 @@
-[gd_scene load_steps=14 format=3 uid="uid://bqcye3p3xus0m"]
+[gd_scene load_steps=15 format=3 uid="uid://bqcye3p3xus0m"]
 
 [ext_resource type="PackedScene" uid="uid://bcwkugn6v3oy7" path="res://addons/godot_state_charts/utilities/state_chart_debugger.tscn" id="1_p05oh"]
 [ext_resource type="Script" path="res://Scripts/home_base.gd" id="2_7e0ir"]
 [ext_resource type="Script" path="res://Scripts/health_ui.gd" id="3_8aa4j"]
 [ext_resource type="Resource" uid="uid://dwjri8tpxrnh7" path="res://Resources/Phases/TestingPhase/TESTING_PHASE.tres" id="3_hdw1t"]
 [ext_resource type="Script" path="res://Scripts/level_controller.gd" id="5_qh4mb"]
+[ext_resource type="Texture2D" uid="uid://i08asv57scio" path="res://Sprites/home base.png" id="6_ej1rl"]
 [ext_resource type="Script" path="res://Scripts/enemy_spawner.gd" id="8_eocyy"]
 [ext_resource type="Script" path="res://addons/godot_state_charts/state_chart.gd" id="8_vr8dj"]
 [ext_resource type="Script" path="res://addons/godot_state_charts/compound_state.gd" id="9_m634t"]
 [ext_resource type="Script" path="res://addons/godot_state_charts/atomic_state.gd" id="10_kvbm7"]
 [ext_resource type="Script" path="res://addons/godot_state_charts/transition.gd" id="11_eiycb"]
+[ext_resource type="PackedScene" uid="uid://d3h3hkhvoekk5" path="res://Prefabs/basic_turret.tscn" id="12_0rquj"]
 
 [sub_resource type="Curve2D" id="Curve2D_4io5x"]
 resource_local_to_scene = true
@@ -17,9 +19,6 @@ _data = {
 "points": PackedVector2Array(0, 0, 0, 0, 42, 617, -227.86, -1.12246, 227.86, 1.12246, 327, 21, -186.329, 28.0616, 186.329, -28.0616, 520, 601, -142.553, -25.8166, 142.553, 25.8166, 800, 51, -143.675, -13.4695, 143.675, 13.4695, 912, 583, 0, 0, 0, 0, 1095, 38)
 }
 point_count = 6
-
-[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_8l4ak"]
-size = Vector2(100, 50)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cyjm1"]
 size = Vector2(107, 44)
@@ -57,8 +56,11 @@ one_shot = true
 script = ExtResource("2_7e0ir")
 
 [node name="Sprite2D" type="Sprite2D" parent="Home_Base" groups=["HomeBase"]]
-position = Vector2(1096, 10)
-texture = SubResource("PlaceholderTexture2D_8l4ak")
+texture_filter = 1
+texture_repeat = 1
+position = Vector2(1094, 50)
+scale = Vector2(3, 3)
+texture = ExtResource("6_ej1rl")
 
 [node name="Health_Amount" type="Label" parent="Home_Base"]
 unique_name_in_owner = true
@@ -73,7 +75,7 @@ text = "Player Health Amount: 0"
 position = Vector2(1096, 10)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Home_Base/Area2D"]
-position = Vector2(-0.5, 12)
+position = Vector2(-3, 72)
 shape = SubResource("RectangleShape2D_cyjm1")
 
 [node name="Health_UI" type="Label" parent="."]
@@ -123,6 +125,9 @@ event = &"loss"
 script = ExtResource("11_eiycb")
 to = NodePath("../../Phase Initializing")
 event = &"phase_init"
+
+[node name="Basic_Turret" parent="." instance=ExtResource("12_0rquj")]
+position = Vector2(555, 331)
 
 [connection signal="timeout" from="Level_Controller/Phase_Cooldown" to="Level_Controller" method="_on_phase_cooldown_timeout"]
 [connection signal="END_OF_PHASE" from="Enemy_Spawner" to="Level_Controller" method="_on_enemy_spawner_end_of_phase"]

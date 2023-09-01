@@ -14,3 +14,4 @@ enemy01_res = ExtResource("1_mfcej")
 enemy02_res = ExtResource("2_q7pjb")
 enemy03_res = ExtResource("3_i441h")
 timeBetweenSpawns = 3.0
+phaseCooldown = 3.0
