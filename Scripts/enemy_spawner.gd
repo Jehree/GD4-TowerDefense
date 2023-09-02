@@ -6,7 +6,6 @@ signal END_OF_PHASE
 var enemyToInstantiate = preload("res://Prefabs/Enemy.tscn")
 var enemyOrder:Array[Enemy_Resource] = []
 
-
 func ReceiveEnemyOrder(newOrder:Array[Enemy_Resource], timeBetweenSpawns:float) -> void:
 	enemyOrder = newOrder
 	SetSpawnCooldownTimerWaitTime(timeBetweenSpawns)

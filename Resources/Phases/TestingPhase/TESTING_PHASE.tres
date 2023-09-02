@@ -13,5 +13,5 @@ enemy03_count = 1
 enemy01_res = ExtResource("1_o8vmh")
 enemy02_res = ExtResource("2_ppay4")
 enemy03_res = ExtResource("3_vdni4")
-timeBetweenSpawns = 3.0
+timeBetweenSpawns = 1.0
 phaseCooldown = 3.0
