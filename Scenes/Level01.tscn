@@ -131,6 +131,9 @@ event = &"phase_init"
 [node name="Basic_Turret" parent="." instance=ExtResource("12_0rquj")]
 position = Vector2(393, 193)
 
+[node name="Basic_Turret2" parent="." instance=ExtResource("12_0rquj")]
+position = Vector2(1042, 534)
+
 [connection signal="timeout" from="Level_Controller/Phase_Cooldown" to="Level_Controller" method="_on_phase_cooldown_timeout"]
 [connection signal="END_OF_PHASE" from="Enemy_Spawner" to="Level_Controller" method="_on_enemy_spawner_end_of_phase"]
 [connection signal="child_exiting_tree" from="Enemy_Spawner/Enemy_Path" to="Level_Controller" method="_on_enemy_path_child_exiting_tree"]

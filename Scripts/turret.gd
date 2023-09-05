@@ -1,13 +1,15 @@
 extends Node2D
+class_name Turret
 
 @export var targetSwapDelay:float
 @export var rotationSpeed := 2.0
 @export_range(0, 1) var priorityOverrideHealthThreshold:float
 @export var enemyPriorityList: Array[ENM.EnemyType]
 
-@onready var gunBarrel := $Gun_Barrel
-@onready var targetTracker := $Target_Tracker
+@onready var turretBarrel:TurretBarrel = $Turret_Barrel
+@onready var barrelEnd:Node2D = $Turret_Barrel/Barrel_End
 @onready var stateChart:StateChart = $Turret_StateChart
+@onready var targetTracker:Node2D = $Target_Tracker
 
 var detectedEnemiesDict: Dictionary = {}
 var targetedEnemyTrackerKey := ""
@@ -28,13 +30,13 @@ func StartTargetSwapTimer() -> void:
 
 # v----- SIGNAL FUNCS -----v
 func _on_detection_area_area_entered(area: Area2D) -> void:
-	var enemyNode = area.get_parent()
+	var enemyNode:PathFollow2D = area.get_parent()
 	if enemyNode.is_in_group("Enemy"):
 		detectedEnemiesDict[enemyNode.name] = enemyNode
 		ToTargetingState()
 
 func _on_detection_area_area_exited(area: Area2D) -> void:
-	var enemyNode = area.get_parent()
+	var enemyNode:PathFollow2D = area.get_parent()
 	if enemyNode.is_in_group("Enemy"):
 		detectedEnemiesDict.erase(enemyNode.name)
 		
@@ -48,12 +50,9 @@ func _on_target_swap_timer_timeout() -> void:
 
 # v----- STATE CHART FUNCS -----v
 func _on_targeting_state_processing(delta) -> void:
-	targetTracker.look_at(detectedEnemiesDict[targetedEnemyTrackerKey].global_position)
-	
-	if targetTracker.rotation > gunBarrel.rotation:
-		gunBarrel.rotate(delta * rotationSpeed)
-	elif targetTracker.rotation < gunBarrel.rotation:
-		gunBarrel.rotate(delta * -rotationSpeed)
+	if detectedEnemiesDict[targetedEnemyTrackerKey] != null:
+		targetTracker.TrackEnemy(detectedEnemiesDict[targetedEnemyTrackerKey])
+	turretBarrel.TurnTowardTarget(targetTracker, rotationSpeed * delta)
 
 
 func _on_targeting_state_entered() -> void:
@@ -71,8 +70,4 @@ func ToTargetingState() -> void:
 
 func ToIdleState() -> void:
 	stateChart.send_event("idle")
-
-
-
-
 
