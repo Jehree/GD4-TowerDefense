@@ -19,7 +19,6 @@ func StartPhaseCooldownTimer() -> void:
 	if remainingPhases >= 0:
 		var phaseCooldownTime = GetPhaseCooldown()
 		%Phase_Cooldown.wait_time = phaseCooldownTime
-		print("Phase cooldown timer started... " + str(phaseCooldownTime) + " seconds")
 		%Phase_Cooldown.start()
 
 
@@ -69,11 +68,9 @@ func _on_home_base_home_health_updated(newHealthAmount) -> void:
 		TolossState()
 
 func _on_enemy_spawner_end_of_phase() -> void:
-	print("endOfPhase set to true")
 	endOfPhase = true
 
 func _on_phase_cooldown_timeout() -> void:
-	print("Phase Cooldown Timeout!")
 	ToPhaseActiveState()
 
 func _on_enemy_path_child_exiting_tree(node: Node) -> void:
@@ -85,7 +82,6 @@ func _on_enemy_path_child_exiting_tree(node: Node) -> void:
 		ToWinState()
 	elif endOfPhase:
 		ToPhaseInitState()
-		print("endOfPhase set to false")
 		endOfPhase = false
 #^----- SIGNAL FUNCS -----^
 

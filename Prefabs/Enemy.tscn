@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://cpo4bka3uu6eh"]
 
-[ext_resource type="Script" path="res://Scripts/enemy.gd" id="1_n24rm"]
+[ext_resource type="Script" path="res://Scripts/Enemy Scripts/enemy.gd" id="1_q8woo"]
 [ext_resource type="Texture2D" uid="uid://eufwu1xsqs3g" path="res://Sprites/enemy.png" id="2_o12cd"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_yox7m"]
@@ -12,7 +12,7 @@ position = Vector2(42, 617)
 rotation = -1.12475
 rotates = false
 loop = false
-script = ExtResource("1_n24rm")
+script = ExtResource("1_q8woo")
 
 [node name="Enemy" type="Sprite2D" parent="."]
 texture_filter = 1

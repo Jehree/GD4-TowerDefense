@@ -12,14 +12,12 @@ func ReceiveEnemyOrder(newOrder:Array[Enemy_Resource], timeBetweenSpawns:float) 
 	StartSpawnCooldownTimer()
 
 func StartSpawnCooldownTimer() -> void:
-	print("Spawn cooldown timer started... " + str(spawnCooldownTimer.wait_time) + " seconds")
 	spawnCooldownTimer.start()
 
 func SetSpawnCooldownTimerWaitTime(timeBetweenSpawns:float):
 	spawnCooldownTimer.wait_time = timeBetweenSpawns
 
 func _on_spawn_cooldown_timeout() -> void:
-	print("Spawn Cooldown Timeout!")
 	if enemyOrder.size() > 0:
 		var randomEnemyOrderIndex = randi_range(0, enemyOrder.size()-1)
 		InstantiateEnemy(enemyOrder[randomEnemyOrderIndex])

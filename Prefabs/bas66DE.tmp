@@ -26,8 +26,6 @@ position = Vector2(-3, 2)
 scale = Vector2(3, 3)
 script = ExtResource("1_i2fnr")
 targetSwapDelay = 2.0
-projectileDamage = 0
-directDamage = 1
 priorityOverrideHealthThreshold = 0.5
 enemyPriorityList = Array[int]([2, 1, 0])
 
@@ -57,6 +55,9 @@ offset = Vector2(0, -3)
 
 [node name="Barrel_End" type="Node2D" parent="Turret_Barrel"]
 position = Vector2(11, -3.05176e-05)
+
+[node name="Fire_Cooldown" type="Timer" parent="Turret_Barrel"]
+one_shot = true
 
 [node name="Detection_Area" type="Area2D" parent="."]
 
@@ -126,17 +127,14 @@ offset_right = 406.333
 offset_bottom = 309.333
 scale = Vector2(0.284341, 0.284341)
 
-[node name="Fire_Cooldown" type="Timer" parent="."]
-one_shot = true
-
 [node name="Target_Swap_Timer" type="Timer" parent="."]
 
+[connection signal="timeout" from="Turret_Barrel/Fire_Cooldown" to="Turret_Barrel" method="_on_fire_cooldown_timeout"]
 [connection signal="area_entered" from="Detection_Area" to="." method="_on_detection_area_area_entered"]
 [connection signal="area_exited" from="Detection_Area" to="." method="_on_detection_area_area_exited"]
 [connection signal="state_entered" from="Turret_StateChart/Root/Targeting_Chart/Targeting" to="." method="_on_targeting_state_entered"]
 [connection signal="state_exited" from="Turret_StateChart/Root/Targeting_Chart/Targeting" to="." method="_on_targeting_state_exited"]
 [connection signal="state_processing" from="Turret_StateChart/Root/Targeting_Chart/Targeting" to="." method="_on_targeting_state_processing"]
-[connection signal="state_entered" from="Turret_StateChart/Root/Firing_Chart/Fire_Shot" to="." method="_on_fire_shot_state_entered"]
-[connection signal="state_entered" from="Turret_StateChart/Root/Firing_Chart/Shot_On_Cooldown" to="." method="_on_shot_on_cooldown_state_entered"]
-[connection signal="timeout" from="Fire_Cooldown" to="." method="_on_fire_cooldown_timeout"]
+[connection signal="state_entered" from="Turret_StateChart/Root/Firing_Chart/Fire_Shot" to="Turret_Barrel" method="_on_fire_shot_state_entered"]
+[connection signal="state_entered" from="Turret_StateChart/Root/Firing_Chart/Shot_On_Cooldown" to="Turret_Barrel" method="_on_shot_on_cooldown_state_entered"]
 [connection signal="timeout" from="Target_Swap_Timer" to="." method="_on_target_swap_timer_timeout"]

@@ -25,7 +25,7 @@ func TakeDamage(damage: int) -> void:
 	currentHealth -= damage
 	%Health_Amount.text = "Health: " + str(currentHealth)
 	if currentHealth <= 0:
-		ENEMY_DEATH.emit(scoreValue)
+		ENEMY_DEATH.emit(scoreValue, self.name)
 		queue_free()
 		
 func DealDamage(damage:int) -> void:

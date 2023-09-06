@@ -2,11 +2,11 @@
 
 [ext_resource type="PackedScene" uid="uid://bcwkugn6v3oy7" path="res://addons/godot_state_charts/utilities/state_chart_debugger.tscn" id="1_p05oh"]
 [ext_resource type="Script" path="res://Scripts/home_base.gd" id="2_7e0ir"]
+[ext_resource type="Script" path="res://Scripts/Level Scripts/level_controller.gd" id="2_xvrah"]
 [ext_resource type="Script" path="res://Scripts/health_ui.gd" id="3_8aa4j"]
-[ext_resource type="Resource" uid="uid://dwjri8tpxrnh7" path="res://Resources/Phases/TestingPhase/TESTING_PHASE.tres" id="3_hdw1t"]
-[ext_resource type="Script" path="res://Scripts/level_controller.gd" id="5_qh4mb"]
+[ext_resource type="Resource" uid="uid://dwjri8tpxrnh7" path="res://Resources/Phases/TestingPhase/TESTING_PHASE.tres" id="3_ux576"]
+[ext_resource type="Script" path="res://Scripts/Enemy Scripts/enemy_spawner.gd" id="4_5m4qw"]
 [ext_resource type="Texture2D" uid="uid://i08asv57scio" path="res://Sprites/home base.png" id="6_ej1rl"]
-[ext_resource type="Script" path="res://Scripts/enemy_spawner.gd" id="8_eocyy"]
 [ext_resource type="Script" path="res://addons/godot_state_charts/state_chart.gd" id="8_vr8dj"]
 [ext_resource type="Script" path="res://addons/godot_state_charts/compound_state.gd" id="9_m634t"]
 [ext_resource type="Script" path="res://addons/godot_state_charts/atomic_state.gd" id="10_kvbm7"]
@@ -34,8 +34,8 @@ initial_node_to_watch = NodePath("../Level_StateChart")
 metadata/_edit_use_anchors_ = true
 
 [node name="Level_Controller" type="Node" parent="."]
-script = ExtResource("5_qh4mb")
-phases = Array[Resource("res://Scripts/level_phase_resource.gd")]([ExtResource("3_hdw1t")])
+script = ExtResource("2_xvrah")
+phases = Array[Resource("res://Scripts/Level Scripts/level_phase_resource.gd")]([ExtResource("3_ux576"), ExtResource("3_ux576")])
 
 [node name="Phase_Cooldown" type="Timer" parent="Level_Controller"]
 unique_name_in_owner = true
@@ -43,7 +43,7 @@ one_shot = true
 
 [node name="Enemy_Spawner" type="Node2D" parent="."]
 unique_name_in_owner = true
-script = ExtResource("8_eocyy")
+script = ExtResource("4_5m4qw")
 
 [node name="Enemy_Path" type="Path2D" parent="Enemy_Spawner"]
 unique_name_in_owner = true
